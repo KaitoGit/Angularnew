@@ -1,0 +1,24 @@
+<h2>Products</h2> <!-- 显示一个标题 "Products" -->
+
+<div *ngFor="let product of products"> <!-- 使用 *ngFor 指令来循环渲染产品列表，products 是一个在组件中定义的数组 -->
+
+  <!-- 渲染每个产品的标题 -->
+  <h3>
+    <a [title]="product.name + ' detailsHR'" [routerLink]="['/products', product.id]"> <!-- 创建一个链接，当点击时会导航到产品详情页 -->
+      {{ product.name }} <!-- 显示产品的名称 -->
+    </a>
+  </h3>
+
+  <!-- 如果产品有描述，显示产品描述 -->
+  <p *ngIf="product.description">Description: {{ product.description }}</p>
+
+  <!-- 创建一个按钮，用于分享产品 -->
+  <button type="button" (click)="share()">Share</button>
+
+  <!-- 使用自定义组件 app-product-alerts 来显示产品的警告信息 -->
+  <app-product-alerts [product]="product" (notify)="onNotify()"></app-product-alerts>
+</div>
+
+<!-- //会把这个 <div> 针对列表中的每个产品进行复写。 -->
+
+
